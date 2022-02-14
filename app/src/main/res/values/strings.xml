@@ -3,4 +3,14 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <!-- Theme -->
+    <string name="theme_shared_preferences_key">SELECTED_THEME_KEY</string>
+    <string name="theme_title">Theme</string>
+    <string name="choose_theme">Choose theme</string>
+    <string name="theme_system_default">System Default</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+
+    <string name="skip">Skip</string>
 </resources>

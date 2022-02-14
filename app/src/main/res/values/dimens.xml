@@ -1,5 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="spacing_bigger">22dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_regular">10dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_micro">2dp</dimen>
+    <dimen name="spacing_small_reverse">-8dp</dimen>
+    <dimen name="spacing_tiny_reverse">-4dp</dimen>
+
+    <!-- elevation -->
+    <dimen name="card_elevation_normal">4dp</dimen>
+    <dimen name="normal_elevation">16dp</dimen>
+    <dimen name="chat_message_elevation">4dp</dimen>
+
+    <!-- font sizes -->
+    <dimen name="font_header">22sp</dimen>
+    <dimen name="font_larger">20sp</dimen>
+    <dimen name="font_large">18sp</dimen>
+    <dimen name="font_normal">15sp</dimen>
+    <dimen name="font_small">13sp</dimen>
+    <dimen name="font_tiny">11sp</dimen>
+
+    <!-- Indicator -->
+    <dimen name="loader_width">20dp</dimen>
+    <dimen name="loader_height">20dp</dimen>
+    <dimen name="indicator_height">6dp</dimen>
+    <dimen name="indicator_corner_radius">4dp</dimen>
+    <dimen name="indicator_dot_size">16dp</dimen>
+    <dimen name="indicator_dot_spacing">4dp</dimen>
+
+    <!-- posts -->
+    <dimen name="preview_post_min_width">240dp</dimen>
+    <dimen name="preview_user_post_image_size">32dp</dimen>
+    <dimen name="preview_close_size">16dp</dimen>
+    <dimen name="reply_corner">16dp</dimen>
+
+    <!-- add post -->
+    <dimen name="post_height">50dp</dimen>
+
+    <!-- parent profile -->
+    <dimen name="parent_image_size">90dp</dimen>
+    <dimen name="small_image_height_width">25dp</dimen>
+    <dimen name="register_button_height">40dp</dimen>
+
+    <!-- country selection -->
+    <dimen name="flag_icon_width">30dp</dimen>
+    <dimen name="country_search_bar_height">60dp</dimen>
+    <dimen name="country_search_view_height">35dp</dimen>
+    <dimen name="country_search_edit_text_height">30dp</dimen>
+    <dimen name="country_search_edit_text_radius">24dp</dimen>
+
+    <!-- profile -->
+    <dimen name="user_post_image_size">50dp</dimen>
+    <dimen name="user_profile_image">120dp</dimen>
+
+    <!-- paddings -->
+    <dimen name="placeholder_padding">20dp</dimen>
+    <dimen name="placeholder_padding_top">30dp</dimen>
+
+    <!-- image sizes -->
+    <dimen name="image_width_thumbnail">50dp</dimen>
+    <dimen name="image_width_small">200dp</dimen>
+    <dimen name="image_width_large">480dp</dimen>
+
+    <!-- onboarding -->
+    <dimen name="image_width_height">240dp</dimen>
+
+    <!-- toolbar -->
+    <dimen name="toolbar_shadow_height">4dp</dimen>
+    <dimen name="toolbar_image_size">48dp</dimen>
+
+    <!-- bottom bar -->
+    <dimen name="bottom_bar_shadow_height">4dp</dimen>
+
+    <!-- chats -->
+    <dimen name="chat_message_input_height">40dp</dimen>
+    <dimen name="chat_message_input_max_height">300dp</dimen>
+    <dimen name="chat_fab_size">40dp</dimen>
+    <dimen name="preview_input_corner">4dp</dimen>
+    <dimen name="preview_input_height">120dp</dimen>
+    <dimen name="chat_emoji_size">36dp</dimen>
+    <dimen name="item_post_action_size">20dp</dimen>
+
 </resources>

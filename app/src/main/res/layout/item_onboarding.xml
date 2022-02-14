@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center" >
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/ivCircle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:fontFamily="@font/din_bold"
+        android:textSize="@dimen/font_header"
+        android:layout_margin="@dimen/spacing_normal"
+        android:layout_marginBottom="@dimen/spacing_normal"
+        android:text="@string/app_name"
+        android:textColor="@color/textColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:id="@+id/ivIllustration"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/ivCircle"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toStartOf="@+id/ivCircle"
+        app:layout_constraintTop_toTopOf="@+id/ivCircle"
+        app:layout_constraintWidth_percent="0.76"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:layout_width="@dimen/image_width_height"
+        android:layout_height="@dimen/image_width_height" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:textColor="@color/textColor"
+        android:visibility="invisible"
+        android:gravity="center"
+        android:textSize="@dimen/font_larger"
+        android:layout_margin="@dimen/spacing_normal"
+        android:fontFamily="@font/din_regular"
+        tools:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        app:layout_constraintTop_toBottomOf="@id/ivCircle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
