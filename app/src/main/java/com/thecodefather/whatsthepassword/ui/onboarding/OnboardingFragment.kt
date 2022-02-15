@@ -30,7 +30,7 @@ class OnboardingFragment : BaseOnboardingFragment(R.layout.fragment_onboarding),
     override val screenName = AnalyticsParams.ScreenNames.ONBOARDING_SCREEN
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel = ViewModelProvider(this, viewModelFactory).get(OnboardingViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[OnboardingViewModel::class.java]
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -67,7 +67,7 @@ class OnboardingFragment : BaseOnboardingFragment(R.layout.fragment_onboarding),
 
         binding.tvSkip.setOnClickListener {
             FlowManager.setUserOnBoarded(true)
-            routingListener?.goToLogin()
+            routingListener?.goToAuthentication()
         }
     }
 

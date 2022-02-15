@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -16,6 +17,7 @@ import com.thecodefather.whatsthepassword.R
 import com.thecodefather.whatsthepassword.databinding.ActivityMainBinding
 import com.thecodefather.whatsthepassword.internal.ThemeType
 import com.thecodefather.whatsthepassword.internal.UserState
+import com.thecodefather.whatsthepassword.internal.extensions.getStringResource
 import com.thecodefather.whatsthepassword.internal.extensions.hide
 import com.thecodefather.whatsthepassword.internal.extensions.show
 import com.thecodefather.whatsthepassword.internal.managers.FlowManager
@@ -23,6 +25,7 @@ import com.thecodefather.whatsthepassword.internal.managers.MainUiManager
 import com.thecodefather.whatsthepassword.internal.managers.NavigationManager
 import com.thecodefather.whatsthepassword.internal.managers.ThemesManager
 import com.thecodefather.whatsthepassword.internal.viewBinding
+import com.thecodefather.whatsthepassword.ui.base.fragments.BaseOnboardingFragment
 import kotlinx.coroutines.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -30,7 +33,8 @@ import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseActivity: AppCompatActivity(), KodeinAware, CoroutineScope {
+abstract class BaseActivity: AppCompatActivity(), KodeinAware, CoroutineScope,
+    BaseOnboardingFragment.RoutingListener {
 
     private lateinit var job: Job
     override val coroutineContext: CoroutineContext
@@ -81,20 +85,19 @@ abstract class BaseActivity: AppCompatActivity(), KodeinAware, CoroutineScope {
         val appGraph = navController.navInflater.inflate(R.navigation.mobile_navigation)
         when (userState) {
             UserState.Initial -> { //start with onboarding
-                //navigationManager.updateNavigation(appGraph, R.id.onboardingFragment)
+                navigationManager.updateNavigation(appGraph, R.id.onboardingFragment)
             }
             UserState.Onboarded -> { //go to login page
-                //navigationManager.updateNavigation(appGraph, R.id.loginFragment)
+                navigationManager.updateNavigation(appGraph, R.id.authenticationFragment)
             }
             UserState.Authenticated -> { //go to registration if not registered, else to home
-                //navigationManager.updateNavigation(appGraph, R.id.postsFragment)
-                //setActionbarTitle(getString(R.string.posts))
+                navigationManager.updateNavigation(appGraph, R.id.homeFragment)
+                setActionbarTitle(getStringResource(R.string.title_home))
             }
         }
         navController.graph = appGraph
 
         mainUiManager.updateActionBarVisibility(FlowManager.isUserAuthenticated())
-        mainUiManager.updateBottomBarVisibility(FlowManager.isUserAuthenticated())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -134,6 +137,7 @@ abstract class BaseActivity: AppCompatActivity(), KodeinAware, CoroutineScope {
     override fun onDestroy() {
         super.onDestroy()
         job.cancel()
+        mainUiManager.destroy()
     }
 
     private fun initActionBar() {
@@ -157,6 +161,17 @@ abstract class BaseActivity: AppCompatActivity(), KodeinAware, CoroutineScope {
     protected fun showToolbar() {
         binding.toolbar.show()
         supportActionBar?.show()
-    } 
+    }
 
+    protected fun updateAppLoaderVisibility(isVisible: Boolean) {
+        binding.pbLoader.isVisible = isVisible
+    }
+
+    override fun goToAuthentication() {
+        manageUserState(UserState.Onboarded)
+    }
+
+    override fun goToHome() {
+        manageUserState(UserState.Authenticated)
+    }
 }

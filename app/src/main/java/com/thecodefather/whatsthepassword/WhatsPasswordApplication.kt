@@ -8,6 +8,8 @@ import com.thecodefather.whatsthepassword.data.room_database.AppDatabase
 import com.thecodefather.whatsthepassword.internal.managers.AnalyticsManager
 import com.thecodefather.whatsthepassword.internal.managers.MainUiManager
 import com.thecodefather.whatsthepassword.internal.managers.RoomManager
+import com.thecodefather.whatsthepassword.ui.authentication.AuthenticationViewModelFactory
+import com.thecodefather.whatsthepassword.ui.home.HomeViewModelFactory
 import com.thecodefather.whatsthepassword.ui.onboarding.OnboardingViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -24,6 +26,9 @@ class WhatsPasswordApplication: Application(), KodeinAware {
         bind() from singleton { AnalyticsManager() }
 
         bind() from provider { OnboardingViewModelFactory() }
+        bind() from provider { AuthenticationViewModelFactory() }
+        bind() from provider { HomeViewModelFactory() }
+
         bind<LocalRepository>() with singleton { LocalRepositoryImpl(instance()) }
     }
 

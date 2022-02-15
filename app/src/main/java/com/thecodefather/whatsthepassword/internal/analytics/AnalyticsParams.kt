@@ -4,6 +4,7 @@ object AnalyticsParams {
 
     object ScreenNames {
         const val ONBOARDING_SCREEN = "onboarding_screen"
+        const val AUTHENTICATION_SCREEN = "authentication_screen"
     }
 
     object EventActions {

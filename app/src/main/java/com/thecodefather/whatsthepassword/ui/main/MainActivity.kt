@@ -3,6 +3,7 @@ package com.thecodefather.whatsthepassword.ui.main
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -32,6 +33,26 @@ class MainActivity : BaseActivity() {
     }
 
     private fun manageSubscriptions() {
+
+        mainUiManager.appLoaderVisibility.observe(this, Observer { isVisible ->
+            if (isVisible == null) return@Observer
+            updateAppLoaderVisibility(isVisible)
+        })
+
+        mainUiManager.toolbarTitle.observe(this, Observer { title ->
+            if (title == null) return@Observer
+            setActionbarTitle(title)
+        })
+
+        mainUiManager.actionbarVisibility.observe(this, Observer {
+            if (it == null) return@Observer
+            if (it) {
+                showToolbar()
+            } else {
+                hideToolbar()
+            }
+        })
+
     }
 
     private fun manageEvents() {

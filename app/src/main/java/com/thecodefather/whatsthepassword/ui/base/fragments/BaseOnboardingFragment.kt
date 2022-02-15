@@ -25,8 +25,7 @@ open class BaseOnboardingFragment(fragmentLayoutRes: Int): BaseFragment(fragment
     }
 
     interface RoutingListener {
-        fun goToLogin()
+        fun goToAuthentication()
         fun goToHome()
-        fun goToRegistration()
     }
 }

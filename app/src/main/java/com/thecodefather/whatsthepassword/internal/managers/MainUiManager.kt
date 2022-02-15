@@ -28,21 +28,12 @@ class MainUiManager {
         _appLoaderVisibility.postValue(isVisible)
     }
 
-    private val _bottomBarVisibility = MutableLiveData<Boolean>()
-    val bottomBarVisibility: LiveData<Boolean> get() = _bottomBarVisibility 
-    fun updateBottomBarVisibility(isVisible: Boolean){
-        _bottomBarVisibility.postValue(isVisible)
-    }
-
-
     init {
         _toolbarTitle.value = ""
-        _bottomBarVisibility.value = false
         _fabVisibility.value = false
     }
 
     fun destroy() {
-        updateBottomBarVisibility(false)
         updateAppLoaderVisibility(false)
     }
 }
