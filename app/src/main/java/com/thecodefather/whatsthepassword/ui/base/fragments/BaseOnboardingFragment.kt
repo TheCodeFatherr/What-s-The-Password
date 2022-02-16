@@ -20,7 +20,6 @@ open class BaseOnboardingFragment(fragmentLayoutRes: Int): BaseFragment(fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainUiManager.updateActionBarVisibility(false)
-        mainUiManager.updateBottomBarVisibility(false)
         mainUiManager.updateFabVisibility(false)
     }
 

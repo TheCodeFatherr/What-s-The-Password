@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Whats The Password</string>
+
+    <!-- menus -->
+    <string name="action_profile">Profile</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- screens -->
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
     <!-- Theme -->
     <string name="theme_shared_preferences_key">SELECTED_THEME_KEY</string>

@@ -9,6 +9,12 @@ plugins {
     id 'com.google.firebase.crashlytics'
 }
 
+
+def appVersionCode = 1
+def appVersionMajorNumber = 1
+def appVersionMinorNumber = 0
+def appVersionBuildNumber = 0
+
 android {
     compileSdk 32
 
@@ -57,9 +63,16 @@ android {
 
     flavorDimensions "version"
     productFlavors{
-        development{}
+        development{
+            versionCode appVersionCode
+            versionName "100."+appVersionMinorNumber+"."+appVersionBuildNumber
+            applicationId "com.thecodefather.whatsthepassword_development"
+        }
 
-        production{}
+        production{
+            versionCode appVersionCode
+            versionName appVersionMajorNumber+"."+appVersionMinorNumber+"."+appVersionBuildNumber
+        }
     }
 }
 
