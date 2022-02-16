@@ -19,14 +19,6 @@
 default_platform(:android)
 
 platform :android do
-
-	desc "Lane for incrementing the app version number"
-	lane :increment_version do
-	  latest_release = firebase_app_distribution_get_latest_release(
-		app: "1:1029715426511:android:5608bf9f81cea9da258bba"
-	  )
-	  increment_version_code({ version_code: latest_release[:buildVersion].to_i + 1 })
-	end
 	
 	desc "Lane for distributing a staging application using Firebase App Distribution"
 	lane :staging do
