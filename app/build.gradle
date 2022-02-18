@@ -86,6 +86,9 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    // Biometric library
+    implementation "androidx.biometric:biometric:$biometric_library_version"
+
     // Time library
     implementation 'joda-time:joda-time:2.10.9'
 

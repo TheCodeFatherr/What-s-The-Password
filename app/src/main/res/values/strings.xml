@@ -13,4 +13,6 @@
     <string name="theme_dark">Dark</string>
 
     <string name="skip">Skip</string>
+    <string name="authenticate">Authenticate</string>
+    <string name="use_biometrics">Use Biometrics to Login</string>
 </resources>

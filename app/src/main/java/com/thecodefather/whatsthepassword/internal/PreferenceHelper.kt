@@ -3,6 +3,8 @@ package com.thecodefather.whatsthepassword.internal
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
+import com.google.gson.Gson
+import com.thecodefather.whatsthepassword.internal.authentication.EncryptedMessage
 import java.util.*
 
 /**
@@ -10,6 +12,7 @@ import java.util.*
  */
 object PreferenceHelper {
 
+    private const val SHARED_PREFS_FILENAME = "biometric_prefs"
     fun defaultPrefs(context: Context): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     private inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
@@ -58,4 +61,30 @@ object PreferenceHelper {
      */
     inline operator fun <reified T : Any> SharedPreferences.get(key: String, defaultValue: T): T =
             get(key) ?: defaultValue
+
+    /**
+     * Saved and EncryptedMessage
+     */
+    fun storeEncryptedMessage(
+        context: Context,
+        prefKey: String,
+        encryptedMessage: EncryptedMessage
+    ) {
+        val json = Gson().toJson(encryptedMessage)
+        context.getSharedPreferences(SHARED_PREFS_FILENAME, Context.MODE_PRIVATE)
+            .edit()
+            .putString(prefKey, json).apply()
+    }
+
+    /**
+     * Returns a single EncryptedMessage from prefKey
+     */
+    fun getEncryptedMessage(
+        context: Context,
+        prefKey: String
+    ): EncryptedMessage? {
+        val json = context.getSharedPreferences(SHARED_PREFS_FILENAME, Context.MODE_PRIVATE)
+            .getString(prefKey, null)
+        return Gson().fromJson(json, EncryptedMessage::class.java)
+    }
 }
