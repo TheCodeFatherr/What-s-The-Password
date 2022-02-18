@@ -13,9 +13,6 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-# ENV['FIREBASE_DEV_APP_ID'] = "1:1029715426511:android:9de739fc7d5e22e7258bba"
-# ENV['FIREBASE_APP_ID'] = "1:1029715426511:android:5608bf9f81cea9da258bba"
-
 default_platform(:android)
 
 platform :android do
@@ -25,7 +22,7 @@ platform :android do
         gradle(task: "clean assembleDevelopmentRelease")
         firebase_app_distribution(
             service_credentials_file: "firebase_credentials.json",
-            app: "1:1029715426511:android:9de739fc7d5e22e7258bba",
+            app: ENV['FIREBASE_APP_ID'],
             release_notes_file: "FirebaseAppDistributionConfig/release_notes.txt",
             groups_file: "FirebaseAppDistributionConfig/groups.txt"
         )
@@ -36,7 +33,7 @@ platform :android do
         gradle(task: "clean assembleProductionRelease")
         firebase_app_distribution(
             service_credentials_file: "firebase_credentials.json",
-            app: "1:1029715426511:android:5608bf9f81cea9da258bba",
+            app: ENV['FIREBASE_APP_ID'],
             release_notes_file: "FirebaseAppDistributionConfig/release_notes.txt",
             groups_file: "FirebaseAppDistributionConfig/groups.txt"
         )

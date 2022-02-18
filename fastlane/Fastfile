@@ -24,7 +24,8 @@ platform :android do
             service_credentials_file: "firebase_credentials.json",
             app: ENV['FIREBASE_APP_ID'],
             release_notes_file: "FirebaseAppDistributionConfig/release_notes.txt",
-            groups_file: "FirebaseAppDistributionConfig/groups.txt"
+            groups_file: "FirebaseAppDistributionConfig/groups.txt",
+			android_artifact_type: "AAB"
         )
 	end
 
@@ -35,7 +36,8 @@ platform :android do
             service_credentials_file: "firebase_credentials.json",
             app: ENV['FIREBASE_APP_ID'],
             release_notes_file: "FirebaseAppDistributionConfig/release_notes.txt",
-            groups_file: "FirebaseAppDistributionConfig/groups.txt"
+            groups_file: "FirebaseAppDistributionConfig/groups.txt",
+			android_artifact_type: "AAB"
         )
 	end
 
