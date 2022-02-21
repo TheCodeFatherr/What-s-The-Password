@@ -16,5 +16,12 @@
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
 
+    <!-- on-boarding -->
     <string name="skip">Skip</string>
+    <string name="screen_one">What\'s the password is your non breakable passwords safe.</string>
+    <string name="how_it_works">How does it work?</string>
+    <string name="screen_two">Saving your password is now one click away.\nThe App will take care of your password, encrypt it and keep it safe.\nWhat are you waiting for?</string>
+    <string name="keep_the_pin_safe">Keep the Pin Safe!</string>
+    <string name="screen_three">Given that the encryption is per user and according to the pin you\'ll add now, please make sure that you keep the pin written and saved in somewhere safe to be able to recover the passwords in case you change your phone</string>
+
 </resources>

@@ -10,6 +10,7 @@ import com.thecodefather.whatsthepassword.internal.managers.MainUiManager
 import com.thecodefather.whatsthepassword.internal.managers.RoomManager
 import com.thecodefather.whatsthepassword.ui.authentication.AuthenticationViewModelFactory
 import com.thecodefather.whatsthepassword.ui.home.HomeViewModelFactory
+import com.thecodefather.whatsthepassword.ui.main.MainViewModelFactory
 import com.thecodefather.whatsthepassword.ui.onboarding.OnboardingViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -25,6 +26,7 @@ class WhatsPasswordApplication: Application(), KodeinAware {
         bind() from singleton { MainUiManager() }
         bind() from singleton { AnalyticsManager() }
 
+        bind() from provider { MainViewModelFactory(instance()) }
         bind() from provider { OnboardingViewModelFactory() }
         bind() from provider { AuthenticationViewModelFactory() }
         bind() from provider { HomeViewModelFactory() }
@@ -43,10 +45,7 @@ class WhatsPasswordApplication: Application(), KodeinAware {
     override fun onCreate() {
         super.onCreate()
         context = this
-
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-
-        context = this
         database = AppDatabase(this)
     }
 }

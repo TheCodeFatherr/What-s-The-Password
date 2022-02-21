@@ -44,7 +44,6 @@ class OnboardingFragment : BaseOnboardingFragment(R.layout.fragment_onboarding),
         binding.vpSlider.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
             override fun onPageSelected(position: Int) {
                 debug("Page Selected $position")
-
                 binding.tvSkip.isEnabled = screens.size == (position + 1)
             }
             override fun onPageScrollStateChanged(state: Int) {
