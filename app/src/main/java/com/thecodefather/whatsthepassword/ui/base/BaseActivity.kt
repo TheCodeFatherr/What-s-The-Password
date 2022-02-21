@@ -87,7 +87,10 @@ abstract class BaseActivity: AppCompatActivity(), KodeinAware, CoroutineScope,
             UserState.Initial -> { //start with onboarding
                 navigationManager.updateNavigation(appGraph, R.id.onboardingFragment)
             }
-            UserState.Onboarded -> { //go to login page
+            UserState.Onboarded -> { //go to pin page
+                navigationManager.updateNavigation(appGraph, R.id.pinFragment)
+            }
+            UserState.AddedPin -> { //go to authentication page
                 navigationManager.updateNavigation(appGraph, R.id.authenticationFragment)
             }
             UserState.Authenticated -> { //go to registration if not registered, else to home

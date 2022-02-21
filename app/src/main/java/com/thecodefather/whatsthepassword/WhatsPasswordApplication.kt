@@ -8,6 +8,7 @@ import com.thecodefather.whatsthepassword.data.room_database.AppDatabase
 import com.thecodefather.whatsthepassword.internal.managers.AnalyticsManager
 import com.thecodefather.whatsthepassword.internal.managers.MainUiManager
 import com.thecodefather.whatsthepassword.internal.managers.RoomManager
+import com.thecodefather.whatsthepassword.ui.add_pin.PinViewModelFactory
 import com.thecodefather.whatsthepassword.ui.authentication.AuthenticationViewModelFactory
 import com.thecodefather.whatsthepassword.ui.home.HomeViewModelFactory
 import com.thecodefather.whatsthepassword.ui.main.MainViewModelFactory
@@ -28,6 +29,7 @@ class WhatsPasswordApplication: Application(), KodeinAware {
 
         bind() from provider { MainViewModelFactory(instance()) }
         bind() from provider { OnboardingViewModelFactory() }
+        bind() from provider { PinViewModelFactory() }
         bind() from provider { AuthenticationViewModelFactory() }
         bind() from provider { HomeViewModelFactory() }
 

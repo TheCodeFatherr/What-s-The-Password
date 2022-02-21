@@ -1,4 +1,4 @@
-package com.thecodefather.whatsthepassword.ui.authentication
+package com.thecodefather.whatsthepassword.ui.add_pin
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,32 +8,30 @@ import android.view.View
 import android.view.ViewGroup
 import com.thecodefather.whatsthepassword.R
 import com.thecodefather.whatsthepassword.databinding.AuthenticationFragmentBinding
-import com.thecodefather.whatsthepassword.databinding.FragmentOnboardingBinding
+import com.thecodefather.whatsthepassword.databinding.PinFragmentBinding
 import com.thecodefather.whatsthepassword.internal.analytics.AnalyticsParams
 import com.thecodefather.whatsthepassword.internal.viewBinding
+import com.thecodefather.whatsthepassword.ui.authentication.AuthenticationViewModelFactory
 import com.thecodefather.whatsthepassword.ui.base.fragments.BaseOnboardingFragment
-import com.thecodefather.whatsthepassword.ui.onboarding.OnboardingViewModel
-import com.thecodefather.whatsthepassword.ui.onboarding.OnboardingViewModelFactory
 import org.kodein.di.generic.instance
 
-class AuthenticationFragment : BaseOnboardingFragment(R.layout.authentication_fragment) {
+class PinFragment : BaseOnboardingFragment(R.layout.pin_fragment) {
 
+    private lateinit var viewModel: PinViewModel
+    private val viewModelFactory: PinViewModelFactory by instance()
 
-    private lateinit var viewModel: AuthenticationViewModel
-    private val viewModelFactory: AuthenticationViewModelFactory by instance()
-
-    private val binding by viewBinding(AuthenticationFragmentBinding::bind)
-    override val screenName = AnalyticsParams.ScreenNames.AUTHENTICATION_SCREEN
+    private val binding by viewBinding(PinFragmentBinding::bind)
+    override val screenName = AnalyticsParams.ScreenNames.ADD_PIN_SCREEN
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel = ViewModelProvider(this, viewModelFactory)[AuthenticationViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[PinViewModel::class.java]
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun initView() {
         super.initView()
         mainUiManager.updateActionBarVisibility(true)
-        mainUiManager.setToolbarTitle("AUTHENTICATE")
+        mainUiManager.setToolbarTitle("PIN")
     }
 
     override fun manageSubscriptions() {
@@ -43,4 +41,5 @@ class AuthenticationFragment : BaseOnboardingFragment(R.layout.authentication_fr
     override fun manageEvents() {
         super.manageEvents()
     }
+
 }
