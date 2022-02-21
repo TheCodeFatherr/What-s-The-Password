@@ -32,6 +32,8 @@ class AuthenticationFragment : BaseOnboardingFragment(R.layout.authentication_fr
 
     override fun initView() {
         super.initView()
+        mainUiManager.updateActionBarVisibility(true)
+        mainUiManager.setToolbarTitle("TESt")
     }
 
     override fun manageSubscriptions() {
