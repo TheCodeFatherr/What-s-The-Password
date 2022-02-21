@@ -74,7 +74,7 @@ abstract class BaseActivity: AppCompatActivity(), KodeinAware, CoroutineScope,
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration( //main dashboards
                 topLevelDestinationIds = setOf (
-                    R.id.navigation_home, R.id.authenticationFragment
+                    R.id.navigation_home, R.id.authenticationFragment, R.id.pinFragment
                 )
         )
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)

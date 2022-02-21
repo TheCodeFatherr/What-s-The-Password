@@ -34,6 +34,14 @@
     <dimen name="image_width_small">200dp</dimen>
     <dimen name="image_width_large">480dp</dimen>
 
+    <!-- Indicator -->
+    <dimen name="loader_width">20dp</dimen>
+    <dimen name="loader_height">20dp</dimen>
+    <dimen name="indicator_height">6dp</dimen>
+    <dimen name="indicator_corner_radius">4dp</dimen>
+    <dimen name="indicator_dot_size">16dp</dimen>
+    <dimen name="indicator_dot_spacing">4dp</dimen>
+
     <!-- onboarding -->
     <dimen name="image_width_height">240dp</dimen>
 

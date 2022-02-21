@@ -16,6 +16,11 @@
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
 
+    <!-- Pin -->
+    <string name="match">match</string>
+    <string name="mismatch">mis-match</string>
+    <string name="passkey_mismatch">Passkeys Mis-Match</string>
+
     <!-- Authentication -->
     <string name="authenticate">Authenticate</string>
     <string name="use_biometrics">Use Biometrics to Login</string>
