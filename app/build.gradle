@@ -9,6 +9,12 @@ plugins {
     id 'com.google.firebase.crashlytics'
 }
 
+
+def appVersionCode = 1
+def appVersionMajorNumber = 1
+def appVersionMinorNumber = 0
+def appVersionBuildNumber = 0
+
 android {
     compileSdk 32
 
@@ -57,9 +63,16 @@ android {
 
     flavorDimensions "version"
     productFlavors{
-        development{}
+        development{
+            versionCode appVersionCode
+            versionName "100."+appVersionMinorNumber+"."+appVersionBuildNumber
+            applicationId "com.thecodefather.whatsthepassword_development"
+        }
 
-        production{}
+        production{
+            versionCode appVersionCode
+            versionName appVersionMajorNumber+"."+appVersionMinorNumber+"."+appVersionBuildNumber
+        }
     }
 }
 
@@ -99,12 +112,12 @@ dependencies {
     implementation "com.google.code.gson:gson:2.8.6"
 
     // ViewModel
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.4.0"
-    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.4.1"
 
     // Kodein
     implementation "org.kodein.di:kodein-di-generic-jvm:$kodein_version"
@@ -115,8 +128,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.0.0'
     implementation 'com.google.firebase:firebase-perf-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-analytics:20.0.2'
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.7'
-    implementation 'com.google.firebase:firebase-core:20.0.2'
+    implementation 'com.google.firebase:firebase-analytics:20.1.0'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.8'
+    implementation 'com.google.firebase:firebase-core:20.1.0'
     implementation 'com.google.firebase:firebase-appindexing:20.0.0'
 }

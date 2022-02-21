@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1029715426511",
+    "project_id": "what-s-the-password",
+    "storage_bucket": "what-s-the-password.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029715426511:android:5608bf9f81cea9da258bba",
+        "android_client_info": {
+          "package_name": "com.thecodefather.whatsthepassword"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1029715426511-thahvi3gh29vn04psqk2l0p4hm7f746o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV1uvqKYa2b2fNsMChgKpP3lI6IS0DRSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1029715426511-thahvi3gh29vn04psqk2l0p4hm7f746o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029715426511:android:9de739fc7d5e22e7258bba",
+        "android_client_info": {
+          "package_name": "com.thecodefather.whatsthepassword_development"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1029715426511-thahvi3gh29vn04psqk2l0p4hm7f746o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV1uvqKYa2b2fNsMChgKpP3lI6IS0DRSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1029715426511-thahvi3gh29vn04psqk2l0p4hm7f746o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,45 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#0275bc</color>
-    <color name="colorPrimaryDark">#003c61</color>
-    <color name="colorAccent">#c9a400</color>
-    <color name="colorAccentDarker">#a38500</color>
+    <color name="colorPrimary">#145729</color>
+    <color name="colorPrimaryDark">#1b1f20</color>
+    <color name="colorAccent">#2b7f3f</color>
+    <color name="colorAccentDarker">#2b7f3f</color>
 
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
 
     <!--Bottom bar-->
     <color name="shadow_color">#1F000000</color>
-    <color name="bottom_bar_selected">#003c61</color>
+    <color name="bottom_bar_selected">#1b1f20</color>
     <color name="bottom_bar_background">#FFFFFF</color>
 
     <!--indicator-->
-    <color name="sync_loader_color">#0275bc</color>
-    <color name="slider_selected_color">#0275bc</color>
+    <color name="sync_loader_color">#2b7f3f</color>
+    <color name="slider_selected_color">#2b7f3f</color>
     <color name="slider_not_filled_color">#4D707070</color>
+    <color name="cloud_indicator_tint_color">#2b7f3f</color>
 
     <!-- Text colors-->
     <color name="textColor">#32323b</color>
 
-    <!--posts-->
-    <color name="category_spinner_background_color">#FFFFFF</color>
-    <color name="category_spinner_drop_down_background_color">#EEEEEE</color>
-    <color name="posts_not_published">#73EEEEEE</color>
-    <color name="posts_gray_light">#C1C1C1</color>
-
-    <!--replies-->
-    <color name="add_reply_background_color">#FFFFFF</color>
-    <color name="reply_background_color">#EEEEEE</color>
-
     <!--common-->
     <color name="light_gray">#EEEEEE</color>
     <color name="gray">#757678</color>
-    <color name="enabled_send_button_color">#0275bc</color>
-    <color name="cloud_indicator_tint_color">#0275bc</color>
 
-    <!--chats-->
-    <color name="chat_input_background">#FFFFFF</color>
-    <color name="received_chat_background_color">#EEEEEE</color>
-    <color name="sent_chat_background_color">#0275bc</color>
 </resources>

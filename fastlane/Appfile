@@ -1,0 +1,7 @@
+json_key_file("") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+for_lane 'staging' do
+  package_name "com.thecodefather.whatsthepassword_development"
+end
+for_lane 'production' do
+  package_name "com.thecodefather.whatsthepassword"
+end

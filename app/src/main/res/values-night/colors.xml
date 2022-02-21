@@ -18,28 +18,12 @@
     <color name="sync_loader_color">#FFFFFF</color>
     <color name="slider_selected_color">#FFFFFF</color>
     <color name="slider_not_filled_color">#4D707070</color>
+    <color name="cloud_indicator_tint_color">#2b7f3f</color>
 
     <!-- Text colors-->
     <color name="textColor">#FFFFFF</color>
 
-    <!--posts-->
-    <color name="category_spinner_background_color">#000000</color>
-    <color name="category_spinner_drop_down_background_color">#000000</color>
-    <color name="posts_not_published">#73EEEEEE</color>
-    <color name="posts_gray_light">#C1C1C1</color>
-
-    <!--replies-->
-    <color name="add_reply_background_color">#000000</color>
-    <color name="reply_background_color">#151515</color>
-
     <!--common-->
     <color name="light_gray">#EEEEEE</color>
     <color name="gray">#757678</color>
-    <color name="enabled_send_button_color">#0275bc</color>
-    <color name="cloud_indicator_tint_color">#0275bc</color>
-
-    <!--chats-->
-    <color name="chat_input_background">#151515</color>
-    <color name="received_chat_background_color">#151515</color>
-    <color name="sent_chat_background_color">#0275bc</color>
 </resources>
