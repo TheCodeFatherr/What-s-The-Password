@@ -41,12 +41,18 @@ import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import androidx.annotation.RequiresApi
+import com.thecodefather.whatsthepassword.internal.extensions.warn
 import java.nio.charset.Charset
 import java.security.KeyStore
+import java.security.SecureRandom
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
+import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.GCMParameterSpec
+import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.PBEKeySpec
+import javax.crypto.spec.SecretKeySpec
 
 /**
  * Helper class to create and manage cryptography related functions
@@ -54,43 +60,80 @@ import javax.crypto.spec.GCMParameterSpec
 @RequiresApi(Build.VERSION_CODES.M)
 object CryptographyUtil {
 
-  private const val YOUR_SECRET_KEY_NAME = "Y0UR$3CR3TK3YN@M3"
-
   private const val KEY_SIZE = 128
-  private const val ANDROID_KEYSTORE = "AndroidKeyStore"
-  private const val ENCRYPTION_BLOCK_MODE = KeyProperties.BLOCK_MODE_GCM
-  private const val ENCRYPTION_PADDING = KeyProperties.ENCRYPTION_PADDING_NONE
   private const val ENCRYPTION_ALGORITHM = KeyProperties.KEY_ALGORITHM_AES
+  private const val ENCRYPTION_BLOCK_MODE = KeyProperties.BLOCK_MODE_CBC
+  private const val ENCRYPTION_PADDING = KeyProperties.ENCRYPTION_PADDING_PKCS7
 
-  /**
-   * Creates centralised SecretKey using the KeyStore
-   */
-  fun getOrCreateSecretKey(keyName: String): SecretKey {
-    // If Secretkey was previously created for that keyName, then grab and return it.
-    val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE)
-    keyStore.load(null) // Keystore must be loaded before it can be accessed
-    keyStore.getKey(keyName, null)?.let { return it as SecretKey }
+  fun encrypt(dataToEncrypt: ByteArray,
+                      passkey: CharArray): HashMap<String, ByteArray> {
+    val map = HashMap<String, ByteArray>()
 
-    // if you reach here, then a new SecretKey must be generated for that keyName
-    val paramsBuilder = KeyGenParameterSpec.Builder(
-        keyName,
-        KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
-    )
-    paramsBuilder.apply {
-      setBlockModes(ENCRYPTION_BLOCK_MODE)
-      setEncryptionPaddings(ENCRYPTION_PADDING)
-      setKeySize(KEY_SIZE)
-      setUserAuthenticationRequired(true)
+    try {
+      // 1
+      //Random salt for next step
+      val random = SecureRandom()
+      val salt = ByteArray(256)
+      random.nextBytes(salt)
+
+      // 2
+      //PBKDF2 - derive the key from the password, don't use passwords directly
+      val pbKeySpec = PBEKeySpec(passkey, salt, 1324, 256)
+      val secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
+      val keyBytes = secretKeyFactory.generateSecret(pbKeySpec).encoded
+      val keySpec = SecretKeySpec(keyBytes, "AES")
+
+      // 3
+      //Create initialization vector for AES
+      val ivRandom = SecureRandom() //not caching previous seeded instance of SecureRandom
+      val iv = ByteArray(16)
+      ivRandom.nextBytes(iv)
+      val ivSpec = IvParameterSpec(iv)
+
+      // 4
+      //Encrypt
+      val cipher = getCipher()
+      cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec)
+      val encrypted = cipher.doFinal(dataToEncrypt)
+
+      // 5
+      map["salt"] = salt
+      map["iv"] = iv
+      map["encrypted"] = encrypted
+    } catch (e: Exception) {
+      warn("encryption exception = ${e.message}")
     }
 
-    val keyGenParams = paramsBuilder.build()
-    val keyGenerator = KeyGenerator.getInstance(
-        KeyProperties.KEY_ALGORITHM_AES,
-        ANDROID_KEYSTORE
-    )
-    keyGenerator.init(keyGenParams)
+    return map
 
-    return keyGenerator.generateKey()
+  }
+
+  fun decrypt(map: HashMap<String, ByteArray>, passkey: CharArray): ByteArray? {
+    var decrypted: ByteArray? = null
+    try {
+
+      val salt = map["salt"]
+      val iv = map["iv"]
+      val encrypted = map["encrypted"]
+
+      // 2
+      //regenerate key from password
+      val pbKeySpec = PBEKeySpec(passkey, salt, 1324, 256)
+      val secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
+      val keyBytes = secretKeyFactory.generateSecret(pbKeySpec).encoded
+      val keySpec = SecretKeySpec(keyBytes, "AES")
+
+      // 3
+      //Decrypt
+      val cipher = getCipher()
+      val ivSpec = IvParameterSpec(iv)
+      cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec)
+      decrypted = cipher.doFinal(encrypted)
+    } catch (e: Exception) {
+      warn("decryption exception = ${e.message}")
+    }
+
+    return decrypted
   }
 
   /**
@@ -103,48 +146,11 @@ object CryptographyUtil {
   }
 
   /**
-   * Prepares Cipher instance to encrypt data with the SecretKey
-   */
-  fun getInitializedCipherForEncryption(): Cipher {
-    val cipher = getCipher()
-    val secretKey = getOrCreateSecretKey(YOUR_SECRET_KEY_NAME)
-    cipher.init(Cipher.ENCRYPT_MODE, secretKey)
-
-    return cipher
-  }
-
-  /**
-   * Returns the same Cipher for decrypting data which was used for encryption
-   */
-  fun getInitializedCipherForDecryption(
-      initializationVector: ByteArray? = null
-  ): Cipher {
-    val cipher = getCipher()
-    val secretKey = getOrCreateSecretKey(YOUR_SECRET_KEY_NAME)
-    cipher.init(
-        Cipher.DECRYPT_MODE,
-        secretKey,
-        GCMParameterSpec(KEY_SIZE, initializationVector)
-    )
-
-    return cipher
-  }
-
-  /**
    * Encrypts text with a Cipher and converts to EncryptedMessage
    */
-  fun encryptData(plaintext: String, cipher: Cipher): EncryptedMessage {
-    val ciphertext = cipher.doFinal(plaintext.toByteArray(Charset.forName("UTF-8")))
-    return EncryptedMessage(ciphertext, cipher.iv)
+  fun encrypt(plainText: String): HashMap<String, ByteArray> {
+    val passwordByteArray = plainText.toByteArray(Charset.forName("UTF-8"))
+    return encrypt(passwordByteArray, plainText.toCharArray())
   }
-
-  /**
-   * Decrypts text with a Cipher and converts to plain String
-   */
-  fun decryptData(ciphertext: ByteArray, cipher: Cipher): String {
-    val plaintext = cipher.doFinal(ciphertext)
-    return String(plaintext, Charset.forName("UTF-8"))
-  }
-
 }
 

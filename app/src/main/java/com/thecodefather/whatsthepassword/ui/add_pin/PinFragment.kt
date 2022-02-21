@@ -11,11 +11,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.thecodefather.whatsthepassword.R
 import com.thecodefather.whatsthepassword.databinding.PinFragmentBinding
 import com.thecodefather.whatsthepassword.internal.analytics.AnalyticsParams
+import com.thecodefather.whatsthepassword.internal.authentication.CryptographyUtil
+import com.thecodefather.whatsthepassword.internal.extensions.debug
+import com.thecodefather.whatsthepassword.internal.extensions.fastLog
 import com.thecodefather.whatsthepassword.internal.extensions.getColorResource
 import com.thecodefather.whatsthepassword.internal.extensions.getStringResource
 import com.thecodefather.whatsthepassword.internal.viewBinding
 import com.thecodefather.whatsthepassword.ui.base.fragments.BaseOnboardingFragment
 import org.kodein.di.generic.instance
+import java.nio.charset.Charset
 
 class PinFragment : BaseOnboardingFragment(R.layout.pin_fragment) {
 
@@ -36,6 +40,15 @@ class PinFragment : BaseOnboardingFragment(R.layout.pin_fragment) {
         super.initView()
         mainUiManager.updateActionBarVisibility(true)
         mainUiManager.setToolbarTitle("PIN")
+
+        val encrypt = CryptographyUtil.encrypt("123")
+        debug("123 Encryption = " + encrypt)
+        val decrypt = CryptographyUtil.decrypt(encrypt, "123".toCharArray())
+        debug("123 Decryption = " + CryptographyUtil.decrypt(encrypt,"123".toCharArray()))
+        decrypt?.let {
+            val decryptedString = String(it, Charsets.UTF_8)
+            debug("123 Decryption = $decryptedString")
+        }
     }
 
     override fun manageEvents() {
