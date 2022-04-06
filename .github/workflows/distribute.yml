@@ -40,6 +40,12 @@ jobs:
           base64 -d -i firebase_credentials.json.b64 > firebase_credentials.json
         env:
           FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
+      
+      - name: Run all tests
+        run: bundle exec fastlane test
+      
+      - name: Increment version code
+        run: bundle exec fastlane increment_vc
           
       - name: Distribute staging app with 🔥 App Distribution 🚀
         run: bundle exec fastlane staging

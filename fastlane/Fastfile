@@ -17,6 +17,20 @@ default_platform(:android)
 
 platform :android do
 	
+	desc "Increment version code"
+	 lane :increment_vc do
+	 increment_version_code(
+		   gradle_file_path: "./app/build.gradle",
+
+	 )
+	end 
+	
+	lane :test do
+		# Run unit tests
+		desc "Runs all the tests"
+		gradle(task: "test")
+	end
+	
 	desc "Lane for distributing a staging application using Firebase App Distribution"
 	lane :staging do
         gradle(task: "clean assembleDevelopmentRelease")
